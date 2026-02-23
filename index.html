@@ -69,7 +69,7 @@ header nav a:hover {
 
 /* ================= SECTIONS ================= */
 section {
-  padding: 70px 20px;
+  padding: 40px 20px;
   max-width: 1200px;
   margin: auto;
 }
@@ -183,19 +183,30 @@ h1, h2 {
     min-width: 100%;
   }
 }
+/* ================= SERVICE HOVER (FIXED) ================= */
 
-/* ================= SERVICE HOVER ================= */
-.services-grid .card::before {
+/* Base card */
+#services .card {
+  position: relative;
+  background: #fff;
+  z-index: 1;
+}
+
+/* Image layer – hidden by default */
+#services .card::before {
   content: "";
   position: absolute;
   inset: 0;
   background-image: var(--img);
   background-size: cover;
   background-position: center;
-  opacity: 0.25;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
 }
 
-.services-grid .card::after {
+/* Gradient overlay */
+#services .card::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -206,21 +217,33 @@ h1, h2 {
     rgba(201,92,255,0.85)
   );
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 8.35s ease;
+  z-index: 1;
 }
 
-.services-grid .card:hover::after { opacity: 1; }
-
-.services-grid .card:hover {
-  transform: scale(1.08);
-  box-shadow: 0 18px 40px rgba(122,92,255,0.35);
+/* Text stays on top */
+#services .card h3,
+#services .card p {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
-.services-grid .card:hover h3,
-.services-grid .card:hover p {
+/* Hover effect */
+#services .card:hover::before,
+#services .card:hover::after {
+  opacity: 1;
+}
+
+#services .card:hover h3,
+#services .card:hover p {
   color: #fff;
 }
 
+#services .card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 18px 40px rgba(122,92,255,0.35);
+}
 /* ================= GALLERY ================= */
 .gallery-grid {
   display: grid;
@@ -333,7 +356,7 @@ function moveSlide(direction) {
 </header>
 
 <section id="home" class="hero">
-  <img src="C:\Users\PAVITHRA\Documents\Sukan\images\image.png" alt="Printing and digital services">
+  <img src="images\image.png" alt="Printing and digital services">
   <h1>Sukan Traders</h1>
   <p>One-Stop Solution for Printing, Digital & E-Services</p>
 </section>
@@ -341,9 +364,9 @@ function moveSlide(direction) {
 <section id="about">
   <h2>About Us</h2>
   <p style="max-width:800px; margin:auto; text-align:center;">
-    <strong>Sukan Traders</strong> is a professional printing and digital service center offering printing, rubber stamps, banners, flex printing, Xerox, e-services, DTP work, board printing, and binding.
-    <br><br>
-    <strong>Established in 2001</strong>, we have been serving companies and institutions across <strong>Tiruvallur and Chennai</strong>.
+    <strong>Sukan Traders</strong> is a professional printing and digital service center offering a wide range of services, including printing, rubber stamps, banners, flex printing, Xerox, e-services, DTP work, board printing, and binding.
+    <strong>Established in 2001</strong>, we bring <strong>25 years of industry experience</strong>, proudly serving companies, businesses, and institutions across 
+ <strong>Tiruvallur and Chennai</strong>. delivering reliable quality and timely service.
   </p>
 </section>
 <section id="infrastructure">
@@ -353,13 +376,11 @@ function moveSlide(direction) {
     <div class="card">
       <h3>Office Area</h3>
       <p>400 Sq. Ft – Admin & Customer Handling</p>
-      <img src="images/office-1.jpg" style="width:100%;border-radius:6px;margin-top:10px;">
     </div>
 
     <div class="card">
       <h3>Working Area</h3>
       <p>2000 Sq. Ft – Production & Machinery</p>
-      <img src="images/workshop-1.jpg" style="width:100%;border-radius:6px;margin-top:10px;">
     </div>
   </div>
 </section>
@@ -390,17 +411,19 @@ function moveSlide(direction) {
   <button class="slider-btn prev-btn" onclick="moveSlide(-1)">‹</button>
 
   <div class="slider-track" id="sliderTrack">
-    <div class="slide"><img src="Employees\1.png.jpeg"></div>
-    <div class="slide"><img src="Employees\2.jpeg"></div>
-    <div class="slide"><img src="Employees\9.jpeg"></div>
-    <div class="slide"><img src="Employees\4.jpeg"></div>
-    <div class="slide"><img src="Employees\7.jpeg"></div>
-    <div class="slide"><img src="Employees\8.jpeg"></div>
-    <div class="slide"><img src="Employees\10.jpeg"></div>
-    <div class="slide"><img src="Employees\5.jpeg"></div>
-    <div class="slide"><img src="Employees\6.jpeg"></div>
-    <div class="slide"><img src="Employees\11.jpeg"></div>
-    <div class="slide"><img src="Employees\12.jpeg"></div>
+    <div class="slide"><img src="employees/1.png.jpeg"></div>
+    <div class="slide"><img src="employees/13.jpeg"></div>
+    <div class="slide"><img src="employees/2.jpeg"></div>
+    <div class="slide"><img src="employees/9.jpeg"></div>
+    <div class="slide"><img src="employees/4.jpeg"></div>
+    <div class="slide"><img src="employees/7.jpeg"></div>
+    <div class="slide"><img src="employees/8.jpeg"></div>
+    <div class="slide"><img src="employees/14.jpeg"></div>
+    <div class="slide"><img src="employees/10.jpeg"></div>
+    <div class="slide"><img src="employees/5.jpeg"></div>
+    <div class="slide"><img src="employees/6.jpeg"></div>
+    <div class="slide"><img src="employees/11.jpeg"></div>
+    <div class="slide"><img src="employees/12.jpeg"></div>
   </div>
 
   <button class="slider-btn next-btn" onclick="moveSlide(1)">›</button>
@@ -408,67 +431,67 @@ function moveSlide(direction) {
 <section id="services">
   <h2>Our Services</h2><div class="services-grid">
 
-  <div class="card" style="--img:url('images\offset.jpeg');">
+  <div class="card" style="--img:url('services/offset.jpeg');">
     <h3>Offset Printing</h3>
     <p>Bulk black & color printing</p>
   </div>
 
-  <div class="card" style="--img:url('images/screen-printing.jpg');">
+  <div class="card" style="--img:url('services/screen.jpeg');">
     <h3>Screen Printing</h3>
     <p>Long-lasting fabric prints</p>
   </div>
 
-  <div class="card" style="--img:url('images/multicolor-printing.jpg');">
+  <div class="card" style="--img:url('services/multicolour.jpeg');">
     <h3>Multicolor Printing</h3>
     <p>Sharp and vibrant prints</p>
   </div>
 
-  <div class="card" style="--img:url('images/photo-framing.jpg');">
+  <div class="card" style="--img:url('services/photoframing.jpeg');">
     <h3>Photo Framing</h3>
     <p>Quality photo frames</p>
   </div>
 
-  <div class="card" style="--img:url('images/large-format.jpg');">
+  <div class="card" style="--img:url('services/aoai.png');">
     <h3>A0, A1, A2 Printout</h3>
     <p>Large format printing</p>
   </div>
 
-  <div class="card" style="--img:url('images/rubber-stamp.jpg');">
+  <div class="card" style="--img:url('services/rubberstamp.jpeg');">
     <h3>Rubber Stamp</h3>
     <p>Office & name stamps</p>
   </div>
 
-  <div class="card" style="--img:url('images/wedding-cards.jpg');">
+  <div class="card" style="--img:url('services/weddingcards.jpeg');">
     <h3>Wedding Cards</h3>
     <p>Custom invitation cards</p>
   </div>
 
-  <div class="card" style="--img:url('images/paper-boards.jpg');">
+  <div class="card" style="--img:url('services/paperboards.jpeg');">
     <h3>Paper & Boards Suppliers</h3>
     <p>All printing materials</p>
   </div>
 
-  <div class="card" style="--img:url('images/sign-board.jpg');">
+  <div class="card" style="--img:url('services/sign boards.jpeg');">
     <h3>Sign Board Works</h3>
     <p>Shop & outdoor signage</p>
   </div>
 
-  <div class="card" style="--img:url('images/radium.jpg');">
+  <div class="card" style="--img:url('services/reflectorsignboards.jpeg');">
     <h3>Reflector / Radium</h3>
     <p>High visibility signage</p>
   </div>
 
-  <div class="card" style="--img:url('images/vinyl-sticker.jpg');">
+  <div class="card" style="--img:url('services/vinylsticker.jpeg');">
     <h3>Vinyl Sticker</h3>
     <p>Durable branding stickers</p>
   </div>
 
-  <div class="card" style="--img:url('images/metal-plate.jpg');">
+  <div class="card" style="--img:url('services/metalplate.jpeg');">
     <h3>Metal Plate Printing</h3>
     <p>Engraved metal plates</p>
   </div>
 
-  <div class="card" style="--img:url('images/laser-cutting.jpg');">
+  <div class="card" style="--img:url('services/lasercutting.jpeg');">
     <h3>Laser Cutting</h3>
     <p>Precision cutting works</p>
   </div>
@@ -501,7 +524,7 @@ function moveSlide(direction) {
     </div>
 
     <div>
-      <img src="https://images.unsplash.com/photo-1590608897129-79da98d159ab">
+      <img src="machineries\ryobi.jpeg">
       <p style="text-align:center;font-weight:bold;">Ryobi offset Printer</p>
     </div>
 
@@ -657,6 +680,7 @@ function moveSlide(direction) {
     <p><strong>Sukan Traders</strong></p>
     <p>📍 No.234B, GNT Road, Gummidipoondi – 601201</p>
     <p>📞 +91 9842301242</p>
+    <p>📞 Office +91 9842301240</p>
     <p>📧 sukantraders@gmail.com</p>
     <p>🕘 9:00 AM – 7:00 PM</p>
   </div>
